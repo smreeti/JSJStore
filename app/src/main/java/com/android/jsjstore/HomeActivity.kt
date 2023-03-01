@@ -1,9 +1,11 @@
 package com.android.jsjstore
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.jsjstore.MainActivity.Companion.USER_NAME
 import com.android.jsjstore.adapter.CategoryAdapter
 import com.android.jsjstore.adapter.ProductAdapter
 import com.android.jsjstore.model.Category
@@ -23,6 +25,10 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        //show logged in user name
+        val tvUser: TextView = findViewById(R.id.tvUser)
+        tvUser.text = "Welcome,".plus(intent.getStringExtra(USER_NAME)).plus("!")
+
         loadCategoryRecyclerView()
         loadProductsRecyclerView()
     }
@@ -35,8 +41,9 @@ class HomeActivity : AppCompatActivity() {
 
         categoryAdapter = CategoryAdapter(options)
         categoryRecyclerView = findViewById(R.id.categoriesView)
-        categoryRecyclerView?.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        categoryRecyclerView?.layoutManager = LinearLayoutManager(
+            this, LinearLayoutManager.HORIZONTAL, false
+        )
         categoryRecyclerView?.adapter = categoryAdapter
     }
 
@@ -48,8 +55,9 @@ class HomeActivity : AppCompatActivity() {
 
         productsAdapter = ProductAdapter(options)
         productsRecyclerView = findViewById(R.id.recommendedView)
-        productsRecyclerView?.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        productsRecyclerView?.layoutManager = LinearLayoutManager(
+            this, LinearLayoutManager.HORIZONTAL, false
+        )
         productsRecyclerView?.adapter = productsAdapter
     }
 

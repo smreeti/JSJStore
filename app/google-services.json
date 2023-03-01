@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "14671755869",
+    "firebase_url": "https://jsjstore-4e7ce-default-rtdb.firebaseio.com",
     "project_id": "jsjstore-4e7ce",
     "storage_bucket": "jsjstore-4e7ce.appspot.com"
   },
@@ -14,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "14671755869-q2n2453qu9cko5ipl7cm45f3vtmnb23p.apps.googleusercontent.com",
+          "client_id": "14671755869-u9r8eoovf9h1oq77eh0irovp34tcvr0u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.jsjstore",
+            "certificate_hash": "f2733de69ccc8ebccbc799981f48029e017c7c49"
+          }
+        },
+        {
+          "client_id": "14671755869-9mv5jl2v4lljqjb06347sup9qmp41res.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "14671755869-q2n2453qu9cko5ipl7cm45f3vtmnb23p.apps.googleusercontent.com",
+              "client_id": "14671755869-9mv5jl2v4lljqjb06347sup9qmp41res.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
