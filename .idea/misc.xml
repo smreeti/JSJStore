@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout-land/recommended_viewholder.xml" value="0.25677083333333334" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/recommended_viewholder.xml" value="0.6" />
       </map>
     </option>
   </component>
