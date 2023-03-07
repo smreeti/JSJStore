@@ -1,6 +1,7 @@
 package com.android.jsjstore.adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -14,6 +15,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.io.Serializable
 
 class ProductAdapter(options: FirebaseRecyclerOptions<Product>) :
     FirebaseRecyclerAdapter<Product, ProductAdapter.MyViewHolder>(options) {
@@ -33,10 +35,7 @@ class ProductAdapter(options: FirebaseRecyclerOptions<Product>) :
 
         holder.btnAdd.setOnClickListener {
             val intent = Intent(holder.itemView.context, ProductDetailActivity::class.java)
-//            intent.putExtra(
-//                "object",
-//                productsDomain.get(holder.adapterPosition) as Serializable
-//            )
+            intent.putExtra("ProductId", model.productId.toString())
             holder.itemView.context.startActivity(intent)
         }
     }

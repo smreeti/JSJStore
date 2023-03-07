@@ -1,6 +1,7 @@
 package com.android.jsjstore.model
 
 data class Product(
+    var productId: Int = 0,
     var title: String? = "",
     var picture: String= "",
     var description: String? = "",
