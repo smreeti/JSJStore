@@ -1,13 +1,18 @@
 package com.android.jsjstore
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.ScrollView
 import android.widget.TextView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.jsjstore.adapter.ClientOrderAdapter
+import com.android.jsjstore.databinding.ActivityCartBinding
+import com.android.jsjstore.databinding.ActivityHomeBinding
 import com.android.jsjstore.helper.AppDatabase
 import com.android.jsjstore.model.ClientOrder
 import kotlinx.coroutines.Dispatchers
@@ -15,17 +20,20 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
 class CartActivity : AppCompatActivity() {
-
     private var cartRecyclerView: RecyclerView? = null
     private lateinit var adapter: ClientOrderAdapter
     private var tax = 0.0
     private val scrollView: ScrollView? = null
+    lateinit var binding : ActivityCartBinding
+    lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cart)
+        binding = ActivityCartBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        NavigationMenuBehavior(binding)
+
 
         cartRecyclerView = findViewById(R.id.CartRecicleView)
         cartRecyclerView?.layoutManager = LinearLayoutManager(this)
@@ -73,5 +81,40 @@ class CartActivity : AppCompatActivity() {
             txtEmptyCard.visibility = View.VISIBLE
             scrollView.visibility = View.GONE
         }
+    }
+
+    private fun NavigationMenuBehavior(binding : ActivityCartBinding){
+        binding.apply {
+            toggle = ActionBarDrawerToggle(this@CartActivity, drawerLayout, R.string.open, R.string.close)
+            drawerLayout?.addDrawerListener(toggle)
+            toggle.syncState()
+
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+            navView?.setNavigationItemSelectedListener {
+                when (it.itemId) {
+                    R.id.cartPage -> {
+                        startActivity(Intent(this@CartActivity, CartActivity::class.java))
+                    }
+                    R.id.homePage -> {
+                        startActivity(Intent(this@CartActivity, HomeActivity::class.java))
+                    }
+                    R.id.orderPage -> {
+                        startActivity(Intent(this@CartActivity, OrderHistoryActivity::class.java))
+                    }
+                    R.id.loginPage -> {
+                        startActivity(Intent(this@CartActivity, LoginActivity::class.java))
+                    }
+                }
+                true
+            }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)){
+            true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -3,12 +3,16 @@ package com.android.jsjstore
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.jsjstore.adapter.ProductAdapter
+import com.android.jsjstore.databinding.ActivityHomeBinding
+import com.android.jsjstore.databinding.ActivityProductDetailBinding
 import com.android.jsjstore.helper.AppDatabase
 import com.android.jsjstore.model.ClientOrder
 import com.android.jsjstore.model.Product
@@ -26,28 +30,19 @@ class ProductDetailActivity : AppCompatActivity() {
     private var productsRecyclerView: RecyclerView? = null
     private var productsAdapter: ProductAdapter? = null
 
+    lateinit var binding : ActivityProductDetailBinding
+    lateinit var toggle: ActionBarDrawerToggle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_detail)
+        binding = ActivityProductDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        NavigationMenuBehavior(binding)
 
         var ProductId = intent.getSerializableExtra("ProductId") as String
-        bottonNavigation()
         loadProductById(ProductId)
     }
 
-    private fun bottonNavigation() {
-        val homeBtn = findViewById<LinearLayout>(R.id.homeBtn)
-        val cartBtn = findViewById<LinearLayout>(R.id.cartBtn)
-        val checkOut = findViewById<LinearLayout>(R.id.checkoutBtn)
-
-        homeBtn.setOnClickListener {
-            startActivity(Intent(this@ProductDetailActivity, HomeActivity::class.java))
-        }
-
-        cartBtn.setOnClickListener {
-            startActivity(Intent(this@ProductDetailActivity, CartActivity::class.java))
-        }
-    }
 
     private fun loadProductById(productId: String) {
 
@@ -80,9 +75,11 @@ class ProductDetailActivity : AppCompatActivity() {
                     txtRanking.text = product?.rank.toString()
 
                     //can not test this one because on my computer I can not get the images from firebase
+
                     //please help.
                     Glide.with(productPicture.context).load(product?.picture).into(productPicture)
                     //end help...
+
                     plusBtn.setOnClickListener {
                         numberOrder += 1
                         txtNumberOrdered.text = numberOrder.toString()
@@ -99,30 +96,60 @@ class ProductDetailActivity : AppCompatActivity() {
 
                     addToCartBtn.setOnClickListener {
                         product?.numberInCart = numberOrder.toString()
-
                         val clientOrder = ClientOrder(
                             productName = product?.title.toString(),
                             quantity = numberOrder,
                             price = product?.price?.toDouble()!!
                         )
-
                         val database = AppDatabase.getInstance(applicationContext)
                         GlobalScope.launch {
                             database.clientOrderDao().insert(clientOrder)
                         }
-
                     }
-
                 } else {
                     // The product with the specified productId does not exist
                     Log.e("loadProduct:onCancelled", "Not Found")
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.e("loadProduct:onCancelled", "Error")
             }
         })
+    }
+
+    private fun NavigationMenuBehavior(binding : ActivityProductDetailBinding){
+        binding.apply {
+            toggle = ActionBarDrawerToggle(this@ProductDetailActivity, drawerLayout, R.string.open, R.string.close)
+            drawerLayout?.addDrawerListener(toggle)
+            toggle.syncState()
+
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+            navView?.setNavigationItemSelectedListener {
+                when (it.itemId) {
+                    R.id.cartPage -> {
+                        startActivity(Intent(this@ProductDetailActivity, CartActivity::class.java))
+                    }
+                    R.id.homePage -> {
+                        startActivity(Intent(this@ProductDetailActivity, HomeActivity::class.java))
+                    }
+                    R.id.orderPage -> {
+                        startActivity(Intent(this@ProductDetailActivity, OrderHistoryActivity::class.java))
+                    }
+                    R.id.loginPage -> {
+                        startActivity(Intent(this@ProductDetailActivity, LoginActivity::class.java))
+                    }
+                }
+                true
+            }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)){
+            true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 
