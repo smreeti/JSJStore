@@ -9,12 +9,16 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.jsjstore.adapter.ProductAdapter
+import com.android.jsjstore.helper.AppDatabase
+import com.android.jsjstore.model.ClientOrder
 import com.android.jsjstore.model.Product
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ProductDetailActivity : AppCompatActivity() {
     private lateinit var productDomain: Product
@@ -27,7 +31,6 @@ class ProductDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_product_detail)
 
         var ProductId = intent.getSerializableExtra("ProductId") as String
-
         bottonNavigation()
         loadProductById(ProductId)
     }
@@ -41,15 +44,9 @@ class ProductDetailActivity : AppCompatActivity() {
             startActivity(Intent(this@ProductDetailActivity, HomeActivity::class.java))
         }
 
-        /*
         cartBtn.setOnClickListener {
             startActivity(Intent(this@ProductDetailActivity, CartActivity::class.java))
         }
-
-        checkOut.setOnClickListener {
-            startActivity(Intent(this@ProductDetailActivity, CheckoutActivity::class.java))
-        }
-        */
     }
 
     private fun loadProductById(productId: String) {
@@ -102,6 +99,18 @@ class ProductDetailActivity : AppCompatActivity() {
 
                     addToCartBtn.setOnClickListener {
                         product?.numberInCart = numberOrder.toString()
+
+                        val clientOrder = ClientOrder(
+                            productName = product?.title.toString(),
+                            quantity = numberOrder,
+                            price = product?.price?.toDouble()!!
+                        )
+
+                        val database = AppDatabase.getInstance(applicationContext)
+                        GlobalScope.launch {
+                            database.clientOrderDao().insert(clientOrder)
+                        }
+
                     }
 
                 } else {
@@ -114,48 +123,6 @@ class ProductDetailActivity : AppCompatActivity() {
                 Log.e("loadProduct:onCancelled", "Error")
             }
         })
-    }
-
-
-
-
-    private fun getProductDetail() {
-
-        /*val drawableResourceId = resources.getIdentifier(productDomain.mainPicture, "drawable", packageName)
-        productPicture.setImageResource(drawableResourceId)
-        txtTitle.text = productDomain.title
-        txtFee.text = "$${productDomain.price}"
-        txtDescription.text = productDomain.description
-        txtNumberOrdered.text = numberOrder.toString()
-
-        txtTotalPrice.text = "Total: $${String.format("%.2f", numberOrder * 12.22)}"
-
-        plusBtn.setOnClickListener {
-            numberOrder += 1
-            txtNumberOrdered.text = numberOrder.toString()
-            txtTotalPrice.text = "Total: $${String.format("%.2f", numberOrder * 12.22)}"
-        }
-
-        minusBtn.setOnClickListener {
-            if (numberOrder > 1) {
-                numberOrder -= 1
-            }
-            txtNumberOrdered.text = numberOrder.toString()
-            txtTotalPrice.text = "Total: $${String.format("%.2f", numberOrder * 12.22)}"
-        }*/
-
-        /*
-        addToCartBtn.setOnClickListener {
-            productDomain.numberInCart = numberOrder
-
-            cartManagment.InsertProduct(CartDomain(
-                    productDomain.title,
-                    productDomain.numberInCart,
-                    productDomain.price,
-                    productDomain.picture
-            ))
-        }
-        */
     }
 }
 
