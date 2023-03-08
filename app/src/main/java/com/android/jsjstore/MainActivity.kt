@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     }*/
 
     private fun initializeCategories() {
-        FirebaseDatabase.getInstance().getReference("products").removeValue()
+        FirebaseDatabase.getInstance().getReference("categories").removeValue()
         dbRef = FirebaseDatabase.getInstance().getReference("categories");
 
         val categories: List<Category> = listOf(

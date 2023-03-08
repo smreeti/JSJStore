@@ -30,16 +30,20 @@ class CheckoutActivity : AppCompatActivity() {
             navView?.setNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.cartPage -> {
-                        startActivity(Intent(this@CheckoutActivity, CartActivity::class.java))
+                        startActivity(Intent(this@CheckoutActivity,
+                            CartActivity::class.java))
                     }
                     R.id.homePage -> {
-                        startActivity(Intent(this@CheckoutActivity, HomeActivity::class.java))
+                        startActivity(Intent(this@CheckoutActivity,
+                            HomeActivity::class.java))
                     }
                     R.id.orderPage -> {
-                        startActivity(Intent(this@CheckoutActivity, OrderHistoryActivity::class.java))
+                        startActivity(Intent(this@CheckoutActivity,
+                            OrderHistoryActivity::class.java))
                     }
                     R.id.loginPage -> {
-                        startActivity(Intent(this@CheckoutActivity, LoginActivity::class.java))
+                        startActivity(Intent(this@CheckoutActivity,
+                            LoginActivity::class.java))
                     }
                 }
                 true
