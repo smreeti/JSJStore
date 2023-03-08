@@ -3,13 +3,10 @@ package com.android.jsjstore
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.jsjstore.MainActivity.Companion.USER_NAME
 import com.android.jsjstore.adapter.CategoryAdapter
 import com.android.jsjstore.adapter.ProductAdapter
 import com.android.jsjstore.databinding.ActivityHomeBinding

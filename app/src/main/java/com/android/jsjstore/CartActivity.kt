@@ -1,6 +1,8 @@
 package com.android.jsjstore
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -12,9 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.jsjstore.adapter.ClientOrderAdapter
 import com.android.jsjstore.databinding.ActivityCartBinding
-import com.android.jsjstore.databinding.ActivityHomeBinding
 import com.android.jsjstore.helper.AppDatabase
 import com.android.jsjstore.model.ClientOrder
+import com.android.jsjstore.utils.CommonUtility
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -24,8 +26,7 @@ class CartActivity : AppCompatActivity() {
     private var cartRecyclerView: RecyclerView? = null
     private lateinit var adapter: ClientOrderAdapter
     private var tax = 0.0
-    private val scrollView: ScrollView? = null
-    lateinit var binding : ActivityCartBinding
+    lateinit var binding: ActivityCartBinding
     lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +34,6 @@ class CartActivity : AppCompatActivity() {
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
         NavigationMenuBehavior(binding)
-
 
         cartRecyclerView = findViewById(R.id.CartRecicleView)
         cartRecyclerView?.layoutManager = LinearLayoutManager(this)
@@ -52,6 +52,23 @@ class CartActivity : AppCompatActivity() {
 
             calculateCard(orders)
         }
+
+        handleCheckoutActivity();
+    }
+
+    private fun handleCheckoutActivity() {
+        val tvCheckout: (TextView) = findViewById(R.id.tvCheckout)
+        tvCheckout.setOnClickListener {
+            val userId = CommonUtility.getLoggedInUser(applicationContext)
+
+            if (userId != "") {
+                val intent = Intent(applicationContext, CheckoutActivity::class.java)
+                startActivity(intent);
+            } else {
+                val intent = Intent(applicationContext, LoginActivity::class.java)
+                startActivity(intent);
+            }
+        }
     }
 
     private fun calculateCard(orders: List<ClientOrder>) {
@@ -62,11 +79,11 @@ class CartActivity : AppCompatActivity() {
         val txtEmptyCard: TextView = findViewById(R.id.txtEmptyCard)
         val scrollView: ScrollView = findViewById(R.id.cardScrollView)
 
-        if(orders.isNotEmpty()){
+        if (orders.isNotEmpty()) {
             txtEmptyCard.visibility = View.GONE
             scrollView.visibility = View.VISIBLE
 
-            val totalFee  = orders.sumOf { it.price }
+            val totalFee = orders.sumOf { it.price }
             val percentageTax = 0.02 // change this for tax price
             val delivery = 10.00 // change this for delivery prices
             tax = Math.round(totalFee * percentageTax * 100.0) / 100.0
@@ -77,15 +94,20 @@ class CartActivity : AppCompatActivity() {
             txtTax.setText("$$tax")
             txtDeliveryServices.setText("$$delivery")
             txtItemTotal.setText("$$itemTotal")
-        }else{
+        } else {
             txtEmptyCard.visibility = View.VISIBLE
             scrollView.visibility = View.GONE
         }
     }
 
-    private fun NavigationMenuBehavior(binding : ActivityCartBinding){
+    private fun NavigationMenuBehavior(binding: ActivityCartBinding) {
         binding.apply {
-            toggle = ActionBarDrawerToggle(this@CartActivity, drawerLayout, R.string.open, R.string.close)
+            toggle = ActionBarDrawerToggle(
+                this@CartActivity,
+                drawerLayout,
+                R.string.open,
+                R.string.close
+            )
             drawerLayout?.addDrawerListener(toggle)
             toggle.syncState()
 
@@ -112,7 +134,7 @@ class CartActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             true
         }
         return super.onOptionsItemSelected(item)

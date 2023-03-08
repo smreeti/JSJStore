@@ -122,7 +122,7 @@
                 app:layout_constraintTop_toTopOf="@+id/creditCartName" />
 
             <Button
-                android:id="@+id/signupnow"
+                android:id="@+id/btnCheckout"
                 android:layout_width="240dp"
                 android:layout_height="62dp"
                 android:backgroundTint="#3F51B5"

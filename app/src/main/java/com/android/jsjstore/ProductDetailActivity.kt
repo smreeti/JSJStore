@@ -59,12 +59,12 @@ class ProductDetailActivity : AppCompatActivity() {
                     // The product with the specified productId exists
                     val product = dataSnapshot.children.first().getValue(Product::class.java)
                     val txtTitle: TextView = findViewById(R.id.txtProductDetailTitle)
-                    val txtFee: TextView = findViewById(R.id.txtDetailPrice)
+                    val txtDetailPrice: TextView = findViewById(R.id.txtDetailPrice)
                     val txtDescription: TextView = findViewById(R.id.txtProductDetailDescription)
                     val plusBtn: ImageView = findViewById(R.id.plusCardBtn)
                     val minusBtn: ImageView = findViewById(R.id.minusCardBtn)
                     val txtNumberOrdered: TextView = findViewById(R.id.txtNumberItem)
-                    val txtTotalPrice: TextView = findViewById(R.id.txtDetailPrice)
+                    val txtTotalPrice: TextView = findViewById(R.id.txtTotalPrice)
                     val txtRanking: TextView = findViewById(R.id.txtDetailRank)
                     val productPicture: ImageView = findViewById(R.id.productDetailImage)
                     val addToCartBtn: TextView = findViewById(R.id.addToCardBtn)
@@ -73,10 +73,10 @@ class ProductDetailActivity : AppCompatActivity() {
                         "Total: $" + (Math.round(numberOrder * product?.price!! * 100)
                             .toDouble() / 100).toString()
 
-                    txtTitle.text = product?.title.toString()
-                    txtFee.text = product?.price?.toString()
+                    txtTitle.text = product.title.toString()
+                    txtDetailPrice.text = "$" + product.price?.toString()
                     txtDescription.text = product?.description
-                    txtRanking.text = product?.rank.toString()
+                    txtRanking.text = product.rank.toString()
 
                     val storeRef: StorageReference =
                         FirebaseStorage.getInstance().getReferenceFromUrl(product.picture)

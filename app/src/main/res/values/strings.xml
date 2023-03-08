@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JSJStore</string>
+    <string name="app_name">JSJ Store</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="title_activity_login">LoginActivity</string>
