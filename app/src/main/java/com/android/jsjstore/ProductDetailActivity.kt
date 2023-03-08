@@ -22,8 +22,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ProductDetailActivity : AppCompatActivity() {
     private lateinit var productDomain: Product
@@ -102,15 +104,18 @@ class ProductDetailActivity : AppCompatActivity() {
                         val clientOrder = ClientOrder(
                             productName = product?.title.toString(),
                             quantity = numberOrder,
-                            price = product?.price?.toDouble()!!
+                            price = product?.price?.toDouble()!!,
+                            productImage = product?.picture?.toString()!!
                         )
                         val database = AppDatabase.getInstance(applicationContext)
                         GlobalScope.launch {
                             database.clientOrderDao().insert(clientOrder)
-                            Toast.makeText(
-                                applicationContext, "Added to cart",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(
+                                    applicationContext, "Added to cart",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     }
                 } else {

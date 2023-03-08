@@ -12,7 +12,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun clientOrderDao(): ClientOrderDao
 
     companion object {
-        private const val DATABASE_NAME = "mydatabase.db"
+        private const val DATABASE_NAME = "JJStoreDB"
 
         @Volatile
         private var instance: AppDatabase? = null

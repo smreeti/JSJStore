@@ -80,11 +80,11 @@ class MainActivity : AppCompatActivity() {
         dbRef = FirebaseDatabase.getInstance().getReference("categories");
 
         val categories: List<Category> = listOf(
-            Category("Casual", "gs://jsjstore-4e7ce.appspot.com/running_cat.png"),
-            Category("Running", "gs://jsjstore-4e7ce.appspot.com/running_cat.png"),
-            Category("Walking", "gs://jsjstore-4e7ce.appspot.com/running_cat.png"),
+            Category("Casual", "gs://jsjstore-4e7ce.appspot.com/7170MTn1XUL._AC_UL1500_-removebg-preview.png"),
+            Category("Running", "gs://jsjstore-4e7ce.appspot.com/alphafly-2-road-racing-shoes-1wG4D7-removebg-preview.png"),
+            Category("Walking", "gs://jsjstore-4e7ce.appspot.com/ezgif-1-f91531660d-removebg-preview.png"),
             Category("Basketball", "gs://jsjstore-4e7ce.appspot.com/running_cat.png"),
-            Category("Lifestyle", "gs://jsjstore-4e7ce.appspot.com/running_cat.png"),
+            Category("Lifestyle", "gs://jsjstore-4e7ce.appspot.com/air-max-90-se-shoes-J35Nc1.jpeg"),
             Category("Football", "gs://jsjstore-4e7ce.appspot.com/running_cat.png")
         )
 
