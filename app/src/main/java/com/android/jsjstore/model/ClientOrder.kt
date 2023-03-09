@@ -10,5 +10,5 @@ data class ClientOrder(
     val productName: String,
     val quantity: Int,
     val price: Double,
-    val productImage: String,
+    val productImage: String
 )

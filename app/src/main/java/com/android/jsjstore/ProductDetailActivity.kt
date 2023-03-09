@@ -9,13 +9,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
-import com.android.jsjstore.adapter.ProductAdapter
 import com.android.jsjstore.databinding.ActivityProductDetailBinding
 import com.android.jsjstore.helper.AppDatabase
 import com.android.jsjstore.model.ClientOrder
 import com.android.jsjstore.model.Product
+import com.android.jsjstore.utils.CommonUtility
 import com.bumptech.glide.Glide
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -28,11 +28,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ProductDetailActivity : AppCompatActivity() {
-    private lateinit var productDomain: Product
     private var numberOrder = 1
-    private var productsRecyclerView: RecyclerView? = null
-    private var productsAdapter: ProductAdapter? = null
-
     lateinit var binding: ActivityProductDetailBinding
     lateinit var toggle: ActionBarDrawerToggle
 
@@ -40,7 +36,7 @@ class ProductDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        NavigationMenuBehavior(binding)
+        navigationMenuBehaviour(binding)
 
         var ProductId = intent.getSerializableExtra("ProductId") as String
         loadProductById(ProductId)
@@ -130,7 +126,7 @@ class ProductDetailActivity : AppCompatActivity() {
         })
     }
 
-    private fun NavigationMenuBehavior(binding: ActivityProductDetailBinding) {
+    private fun navigationMenuBehaviour(binding: ActivityProductDetailBinding) {
         binding.apply {
             toggle = ActionBarDrawerToggle(
                 this@ProductDetailActivity,
@@ -181,6 +177,10 @@ class ProductDetailActivity : AppCompatActivity() {
                 true
             }
         }
+
+        // Get a reference to the NavigationView
+        val navigationView = findViewById<NavigationView>(R.id.navView)
+        CommonUtility.setNavHeader(applicationContext, navigationView)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

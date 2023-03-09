@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initializeCategories() {
         FirebaseDatabase.getInstance().getReference("categories").removeValue()
-        dbRef = FirebaseDatabase.getInstance().getReference("categories");
+        dbRef = FirebaseDatabase.getInstance().getReference("categories")
 
         val categories: List<Category> = listOf(
             Category("Casual", "gs://jsjstore-4e7ce.appspot.com/7170MTn1XUL._AC_UL1500_-removebg-preview.png"),

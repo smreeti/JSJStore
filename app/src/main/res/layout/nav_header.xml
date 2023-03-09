@@ -13,27 +13,23 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/profile"
-        />
+        android:src="@drawable/user" />
 
     <TextView
+        android:id="@+id/tvDisplayName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/user_name"
         android:paddingTop="8dp"
-        android:textSize="20dp"
-        android:text="Juan Adon"
+        android:text="Hello, please sign in"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        />
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/email"
-        android:textSize="16dp"
-        android:text="juan.addon@gmail.com"
-        />
+        android:textSize="16dp" />
 
     <View
         android:layout_width="match_parent"

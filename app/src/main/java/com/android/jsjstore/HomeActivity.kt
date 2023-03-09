@@ -12,7 +12,10 @@ import com.android.jsjstore.adapter.ProductAdapter
 import com.android.jsjstore.databinding.ActivityHomeBinding
 import com.android.jsjstore.model.Category
 import com.android.jsjstore.model.Product
+import com.android.jsjstore.utils.CommonUtility.Companion.setNavHeader
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class HomeActivity : AppCompatActivity() {
@@ -25,19 +28,16 @@ class HomeActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityHomeBinding
     lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        NavigationMenuBehavior(binding)
-
-        //show logged in user name
-        //val tvUser: TextView = findViewById(R.id.tvUser)
-        //tvUser.text = "Welcome,".plus(intent.getStringExtra(USER_NAME)).plus("!")
 
         loadCategoryRecyclerView()
         loadProductsRecyclerView()
+        navigationMenuBehaviour(binding)
     }
 
     private fun loadCategoryRecyclerView() {
@@ -68,7 +68,7 @@ class HomeActivity : AppCompatActivity() {
         productsRecyclerView?.adapter = productsAdapter
     }
 
-    private fun NavigationMenuBehavior(binding : ActivityHomeBinding){
+    private fun navigationMenuBehaviour(binding : ActivityHomeBinding){
         binding.apply {
             toggle = ActionBarDrawerToggle(this@HomeActivity, drawerLayout, R.string.open, R.string.close)
             drawerLayout?.addDrawerListener(toggle)
@@ -96,6 +96,9 @@ class HomeActivity : AppCompatActivity() {
                 }
                 true
             }
+            // Get a reference to the NavigationView
+            val navigationView = findViewById<NavigationView>(R.id.navView)
+            setNavHeader(applicationContext, navigationView)
         }
     }
 

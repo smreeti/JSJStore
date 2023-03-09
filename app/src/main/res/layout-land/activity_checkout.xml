@@ -55,7 +55,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <EditText
-                android:id="@+id/creditCardNumber"
+                android:id="@+id/etCreditCardNumber"
                 android:layout_width="328dp"
                 android:layout_height="49dp"
                 android:layout_marginStart="20dp"
@@ -68,11 +68,11 @@
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/creditCartName"
+                app:layout_constraintTop_toBottomOf="@+id/etCreditCartName"
                 app:layout_constraintVertical_bias="0.25" />
 
             <EditText
-                android:id="@+id/creditCartName"
+                android:id="@+id/etCreditCartName"
                 android:layout_width="328dp"
                 android:layout_height="43dp"
                 android:layout_marginStart="20dp"
@@ -90,7 +90,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <EditText
-                android:id="@+id/CreditCardExpirationDate"
+                android:id="@+id/etCreditCardExpirationDate"
                 android:layout_width="225dp"
                 android:layout_height="45dp"
                 android:background="@drawable/inputstyle"
@@ -106,7 +106,7 @@
                 app:layout_constraintTop_toTopOf="@+id/username" />
 
             <EditText
-                android:id="@+id/cvv"
+                android:id="@+id/etCvv"
                 android:layout_width="180dp"
                 android:layout_height="44dp"
                 android:background="@drawable/inputstyle"
@@ -118,8 +118,8 @@
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.576"
-                app:layout_constraintStart_toEndOf="@+id/creditCartName"
-                app:layout_constraintTop_toTopOf="@+id/creditCartName" />
+                app:layout_constraintStart_toEndOf="@+id/etCreditCartName"
+                app:layout_constraintTop_toTopOf="@+id/etCreditCartName" />
 
             <Button
                 android:id="@+id/btnCheckout"
@@ -132,8 +132,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.757"
-                app:layout_constraintStart_toEndOf="@+id/creditCardNumber"
-                app:layout_constraintTop_toBottomOf="@+id/cvv"
+                app:layout_constraintStart_toEndOf="@+id/etCreditCardNumber"
+                app:layout_constraintTop_toBottomOf="@+id/etCvv"
                 app:layout_constraintVertical_bias="0.342" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

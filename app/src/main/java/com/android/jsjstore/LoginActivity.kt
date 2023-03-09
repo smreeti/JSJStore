@@ -136,25 +136,24 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            parseLoggedInUserInfo(user.email.toString());
+            updateSharedPreferences(user)
             val intent = Intent(applicationContext, CheckoutActivity::class.java)
-            intent.putExtra(USER_NAME, user.displayName)
-            startActivity(intent);
+            startActivity(intent)
         }
     }
 
     companion object {
         const val RC_SIGN_IN = 1001
-        const val USER_NAME = "USER_NAME"
     }
 
-    private fun parseLoggedInUserInfo(userId: String) {
+    private fun updateSharedPreferences(user: FirebaseUser) {
         val sharedPreferences: SharedPreferences = applicationContext.getSharedPreferences(
             "userInfo",
             Context.MODE_PRIVATE
         )
         val editor = sharedPreferences.edit()
-        editor.putString("userId", userId)
+        editor.putString("userId", user.email.toString())
+        editor.putString("displayName", user.displayName)
         editor.apply()
     }
 

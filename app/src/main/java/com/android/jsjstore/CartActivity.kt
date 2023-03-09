@@ -1,8 +1,6 @@
 package com.android.jsjstore
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -17,6 +15,7 @@ import com.android.jsjstore.databinding.ActivityCartBinding
 import com.android.jsjstore.helper.AppDatabase
 import com.android.jsjstore.model.ClientOrder
 import com.android.jsjstore.utils.CommonUtility
+import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -33,7 +32,7 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        NavigationMenuBehavior(binding)
+        navigationMenuBehavior(binding)
 
         cartRecyclerView = findViewById(R.id.CartRecicleView)
         cartRecyclerView?.layoutManager = LinearLayoutManager(this)
@@ -100,7 +99,7 @@ class CartActivity : AppCompatActivity() {
         }
     }
 
-    private fun NavigationMenuBehavior(binding: ActivityCartBinding) {
+    private fun navigationMenuBehavior(binding: ActivityCartBinding) {
         binding.apply {
             toggle = ActionBarDrawerToggle(
                 this@CartActivity,
@@ -131,6 +130,9 @@ class CartActivity : AppCompatActivity() {
                 true
             }
         }
+        // Get a reference to the NavigationView
+        val navigationView = findViewById<NavigationView>(R.id.navView)
+        CommonUtility.setNavHeader(applicationContext, navigationView)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

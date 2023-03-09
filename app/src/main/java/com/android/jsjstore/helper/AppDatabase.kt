@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.android.jsjstore.interfaces.ClientOrderDao
 import com.android.jsjstore.model.ClientOrder
 
-@Database(entities = [ClientOrder::class], version = 1)
+@Database(entities = [ClientOrder::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun clientOrderDao(): ClientOrderDao
 
@@ -25,6 +25,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context): AppDatabase {
             return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
+                .fallbackToDestructiveMigration()
                 .build()
         }
     }
