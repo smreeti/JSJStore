@@ -17,4 +17,10 @@ interface ClientOrderDao {
 
     @Query("DELETE FROM client_orders")
     fun deleteAll()
+
+    @Query("SELECT * FROM client_orders WHERE productName = :productName")
+    fun getProductByName(productName: String): ClientOrder?
+
+    @Update
+    fun update(clientOrder: ClientOrder)
 }

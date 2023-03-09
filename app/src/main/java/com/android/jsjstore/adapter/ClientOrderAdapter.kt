@@ -39,11 +39,11 @@ class ClientOrderAdapter(private val orders: List<ClientOrder>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val order = orders[position]
         holder.title.text = order.productName
-        holder.totalEachItem.setText("$"+ Math.round(order.quantity * order.price));
-        holder.num.text = order.quantity.toString()
-        holder.feeEachItem.text = order.price.toString()
 
-        //Jayr Solve this problem....
+        holder.totalEachItem.text = "Total $:" + String.format("%.2f", order.quantity * order.price)
+        holder.num.text = "Quantity:${order.quantity.toString()}"
+        holder.feeEachItem.text = "Unit Price\$:${String.format("%.2f", order.price)}"
+
         val storeRef: StorageReference =
             FirebaseStorage.getInstance().getReferenceFromUrl(order?.productImage.toString())
         Glide.with(holder.pic.context).load(storeRef).into(holder.pic)
