@@ -1,15 +1,15 @@
 package com.android.jsjstore
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.android.jsjstore.databinding.ActivityLoginBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.android.jsjstore.databinding.ActivityOrderHistoryBinding
+import com.android.jsjstore.utils.CommonUtility
 
 class OrderHistoryActivity : AppCompatActivity() {
-    lateinit var binding : ActivityOrderHistoryBinding
+    lateinit var binding: ActivityOrderHistoryBinding
     lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,9 +20,14 @@ class OrderHistoryActivity : AppCompatActivity() {
 
     }
 
-    private fun NavigationMenuBehavior(binding : ActivityOrderHistoryBinding){
+    private fun NavigationMenuBehavior(binding: ActivityOrderHistoryBinding) {
         binding.apply {
-            toggle = ActionBarDrawerToggle(this@OrderHistoryActivity, drawerLayout, R.string.open, R.string.close)
+            toggle = ActionBarDrawerToggle(
+                this@OrderHistoryActivity,
+                drawerLayout,
+                R.string.open,
+                R.string.close
+            )
             drawerLayout?.addDrawerListener(toggle)
             toggle.syncState()
 
@@ -37,10 +42,29 @@ class OrderHistoryActivity : AppCompatActivity() {
                         startActivity(Intent(this@OrderHistoryActivity, HomeActivity::class.java))
                     }
                     R.id.orderPage -> {
-                        startActivity(Intent(this@OrderHistoryActivity, OrderHistoryActivity::class.java))
+                        startActivity(
+                            Intent(
+                                this@OrderHistoryActivity,
+                                OrderHistoryActivity::class.java
+                            )
+                        )
                     }
-                    R.id.loginPage -> {
-                        startActivity(Intent(this@OrderHistoryActivity, LoginActivity::class.java))
+                    R.id.loginOrLogoutPage -> {
+                        val loggedInUser = CommonUtility.getLoggedInUser(applicationContext)
+
+                        if (loggedInUser == "") {
+                            val intent =
+                                Intent(this@OrderHistoryActivity, LoginActivity::class.java)
+                            intent.putExtra("sidebar", true)
+                            startActivity(intent)
+                        } else {
+                            startActivity(
+                                Intent(
+                                    this@OrderHistoryActivity,
+                                    LogoutActivity::class.java
+                                )
+                            )
+                        }
                     }
                 }
                 true
@@ -49,7 +73,7 @@ class OrderHistoryActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             true
         }
         return super.onOptionsItemSelected(item)

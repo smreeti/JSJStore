@@ -165,13 +165,22 @@ class ProductDetailActivity : AppCompatActivity() {
                             )
                         )
                     }
-                    R.id.loginPage -> {
-                        startActivity(
-                            Intent(
-                                this@ProductDetailActivity,
-                                LoginActivity::class.java
+                    R.id.loginOrLogoutPage -> {
+                        val loggedInUser = CommonUtility.getLoggedInUser(applicationContext)
+
+                        if (loggedInUser == "") {
+                            val intent =
+                                Intent(this@ProductDetailActivity, LoginActivity::class.java)
+                            intent.putExtra("sidebar", true)
+                            startActivity(intent)
+                        } else {
+                            startActivity(
+                                Intent(
+                                    this@ProductDetailActivity,
+                                    LogoutActivity::class.java
+                                )
                             )
-                        )
+                        }
                     }
                 }
                 true

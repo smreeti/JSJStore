@@ -2,6 +2,7 @@ package com.android.jsjstore
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ScrollView
@@ -15,6 +16,7 @@ import com.android.jsjstore.databinding.ActivityCartBinding
 import com.android.jsjstore.helper.AppDatabase
 import com.android.jsjstore.model.ClientOrder
 import com.android.jsjstore.utils.CommonUtility
+import com.android.jsjstore.utils.CommonUtility.Companion.setNavHeader
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -27,6 +29,7 @@ class CartActivity : AppCompatActivity() {
     private var tax = 0.0
     lateinit var binding: ActivityCartBinding
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var menu: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,10 +51,8 @@ class CartActivity : AppCompatActivity() {
                 adapter = ClientOrderAdapter(orders)
                 cartRecyclerView?.adapter = adapter
             }
-
             calculateCard(orders)
         }
-
         handleCheckoutActivity();
     }
 
@@ -123,8 +124,16 @@ class CartActivity : AppCompatActivity() {
                     R.id.orderPage -> {
                         startActivity(Intent(this@CartActivity, OrderHistoryActivity::class.java))
                     }
-                    R.id.loginPage -> {
-                        startActivity(Intent(this@CartActivity, LoginActivity::class.java))
+                    R.id.loginOrLogoutPage -> {
+                        val loggedInUser = CommonUtility.getLoggedInUser(applicationContext)
+
+                        if (loggedInUser == "") {
+                            val intent = Intent(this@CartActivity, LoginActivity::class.java)
+                            intent.putExtra("sidebar", true)
+                            startActivity(intent)
+                        } else {
+                            startActivity(Intent(this@CartActivity, LogoutActivity::class.java))
+                        }
                     }
                 }
                 true
@@ -132,7 +141,7 @@ class CartActivity : AppCompatActivity() {
         }
         // Get a reference to the NavigationView
         val navigationView = findViewById<NavigationView>(R.id.navView)
-        CommonUtility.setNavHeader(applicationContext, navigationView)
+        setNavHeader(applicationContext, navigationView)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -141,4 +150,12 @@ class CartActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        super.onCreateOptionsMenu(menu)
+
+        // Return true so that the menu gets displayed.
+        return true
+    }
+
 }

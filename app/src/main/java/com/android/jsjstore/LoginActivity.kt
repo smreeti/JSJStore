@@ -10,6 +10,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.jsjstore.databinding.ActivityLoginBinding
+import com.android.jsjstore.utils.CommonUtility
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
@@ -31,11 +32,13 @@ class LoginActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+    var isSidebarClicked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         auth = Firebase.auth
+        isSidebarClicked = intent.getSerializableExtra("sidebar") as? Boolean ?: false
 
         setContentView(binding.root)
         navigationMenuBehaviour(binding)
@@ -137,7 +140,11 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
             updateSharedPreferences(user)
-            val intent = Intent(applicationContext, CheckoutActivity::class.java)
+            val intent = if (isSidebarClicked) {
+                Intent(applicationContext, HomeActivity::class.java)
+            } else {
+                Intent(applicationContext, CheckoutActivity::class.java)
+            }
             startActivity(intent)
         }
     }
@@ -181,8 +188,16 @@ class LoginActivity : AppCompatActivity() {
                     R.id.orderPage -> {
                         startActivity(Intent(this@LoginActivity, OrderHistoryActivity::class.java))
                     }
-                    R.id.loginPage -> {
-                        startActivity(Intent(this@LoginActivity, LoginActivity::class.java))
+                    R.id.loginOrLogoutPage -> {
+                        val loggedInUser = CommonUtility.getLoggedInUser(applicationContext)
+
+                        if (loggedInUser == "") {
+                            val intent = Intent(this@LoginActivity, LoginActivity::class.java)
+                            intent.putExtra("sidebar", true)
+                            startActivity(intent)
+                        } else {
+                            startActivity(Intent(this@LoginActivity, LogoutActivity::class.java))
+                        }
                     }
                 }
                 true

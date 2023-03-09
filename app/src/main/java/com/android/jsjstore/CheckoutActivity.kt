@@ -14,8 +14,8 @@ import com.android.jsjstore.databinding.ActivityCheckoutBinding
 import com.android.jsjstore.helper.AppDatabase
 import com.android.jsjstore.model.ClientOrder
 import com.android.jsjstore.model.OrderInfo
-import com.android.jsjstore.utils.CommonUtility
 import com.android.jsjstore.utils.CommonUtility.Companion.getLoggedInUser
+import com.android.jsjstore.utils.CommonUtility.Companion.setNavHeader
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -60,7 +60,6 @@ class CheckoutActivity : AppCompatActivity() {
                         Log.i("ORDER DATA INSERTION", "Orders inserted successfully");
                     }
 
-                clientOrderDao.deleteAll() //delete the cart info from room database
                 Toast.makeText(
                     applicationContext, "Order places successfully", Toast.LENGTH_SHORT
                 ).show()
@@ -140,19 +139,19 @@ class CheckoutActivity : AppCompatActivity() {
                     }
                     R.id.orderPage -> {
                         startActivity(
-                            Intent(
-                                this@CheckoutActivity,
-                                OrderHistoryActivity::class.java
-                            )
+                            Intent(this@CheckoutActivity, OrderHistoryActivity::class.java)
                         )
                     }
-                    R.id.loginPage -> {
-                        startActivity(
-                            Intent(
-                                this@CheckoutActivity,
-                                LoginActivity::class.java
-                            )
-                        )
+                    R.id.loginOrLogoutPage -> {
+                        val loggedInUser = getLoggedInUser(applicationContext)
+
+                        if (loggedInUser == "") {
+                            val intent = Intent(this@CheckoutActivity, LoginActivity::class.java)
+                            intent.putExtra("sidebar", true)
+                            startActivity(intent)
+                        } else {
+                            startActivity(Intent(this@CheckoutActivity, LogoutActivity::class.java))
+                        }
                     }
                 }
                 true
@@ -160,7 +159,7 @@ class CheckoutActivity : AppCompatActivity() {
         }
         // Get a reference to the NavigationView
         val navigationView = findViewById<NavigationView>(R.id.navView)
-        CommonUtility.setNavHeader(applicationContext, navigationView)
+        setNavHeader(applicationContext, navigationView)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

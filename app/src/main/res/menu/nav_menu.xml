@@ -10,10 +10,8 @@
         android:id="@+id/cartPage"
         android:title="My Cart" />
     <item
-        android:id="@+id/loginPage"
-        android:title="Login" />
+        android:id="@+id/loginOrLogoutPage"
+        android:title="Login"
+   />
 
-    <item
-        android:id="@+id/checkoutPage"
-        android:title="Checkout" />
 </menu>
