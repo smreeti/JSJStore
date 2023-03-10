@@ -1,7 +1,9 @@
 package com.android.jsjstore
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +14,7 @@ import com.android.jsjstore.databinding.ActivityOrderHistoryBinding
 import com.android.jsjstore.model.OrderInfo
 import com.android.jsjstore.utils.CommonUtility
 import com.android.jsjstore.utils.CommonUtility.Companion.getLoggedInUser
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class OrderHistoryActivity : AppCompatActivity() {
     lateinit var binding: ActivityOrderHistoryBinding
@@ -31,37 +33,44 @@ class OrderHistoryActivity : AppCompatActivity() {
 
     private fun loadOrderHistory() {
         val loggedInUser = getLoggedInUser(applicationContext)
+        //val loggedInUser = "mool,smreeti@gmail,com" -- delete me later
 
         if (loggedInUser != "") {
-            val query = FirebaseDatabase.getInstance().getReference("orders")
+            val databaseReference = FirebaseDatabase.getInstance().reference
+            val query = databaseReference.child("orders")
                 .child(loggedInUser.replace(".", ","))
 
-            query.get().addOnSuccessListener { orderInfo ->
-                run {
-                    val orderInfoList = orderInfo.children
+            query.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val orderInfoList = mutableListOf<OrderInfo>()
 
-                    orderInfoList.forEach { orders ->
-                        run {
-                            val order = orders.getValue(OrderInfo::class.java)
-                            orderHistoryAdapter = order?.let { OrderHistoryAdapter(it) }
+                    for (orderNode in dataSnapshot.children) {
+                        val dynamicNodeKey = orderNode.key
+                        for (orderDetailNode in orderNode.children) {
+                            val order = orderDetailNode.getValue(OrderInfo::class.java)
+                            if (order != null) {
+                                order.id = dynamicNodeKey.hashCode().toLong()
+                                orderInfoList.add(order)
+                            }
                         }
-
                     }
+                    // use the orderInfoList to do something with the data
+                    orderHistoryAdapter = OrderHistoryAdapter(orderInfoList)
+                    rView = findViewById(R.id.orderHistoryRecyclerView)
+                    rView?.layoutManager = LinearLayoutManager(this@OrderHistoryActivity)
+                    rView?.adapter = orderHistoryAdapter
                 }
-            }
 
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.e(TAG, "Error fetching orders: ${databaseError.message}")
+                }
+            })
 
-//            val options =
-//                FirebaseRecyclerOptions.Builder<OrderInfo>()
-//                    .setQuery(query, OrderInfo::class.java)
-//                    .build()
-//            orderHistoryAdapter = OrderHistoryAdapter(options)
-
-            rView = findViewById(R.id.orderHistoryRecyclerView)
-            rView?.layoutManager = LinearLayoutManager(this)
-            rView?.adapter = orderHistoryAdapter
         }
     }
+
+
+
 
     private fun navigationMenuBehaviour(binding: ActivityOrderHistoryBinding) {
         binding.apply {

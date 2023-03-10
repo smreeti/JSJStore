@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-class OrderHistoryAdapter(private val orders: OrderInfo) :
+class OrderHistoryAdapter(private val orders: MutableList<OrderInfo>) :
     RecyclerView.Adapter<OrderHistoryAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,7 +31,7 @@ class OrderHistoryAdapter(private val orders: OrderInfo) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val order = orders
+        val order = orders[position]
 
         val storeRef: StorageReference =
             FirebaseStorage.getInstance().getReferenceFromUrl(order.productImage)
@@ -44,6 +44,6 @@ class OrderHistoryAdapter(private val orders: OrderInfo) :
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return orders.size
     }
 }
