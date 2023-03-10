@@ -8,6 +8,7 @@
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/drawable/grey_bar.xml" value="0.1" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout-land/activity_checkout.xml" value="0.1" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout-land/activity_home.xml" value="0.2515625" />
+        <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout-land/cart_viewholder.xml" value="0.2734375" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout-land/recommended_viewholder.xml" value="0.25677083333333334" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/activity_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/activity_checkout.xml" value="0.21770833333333334" />
@@ -17,6 +18,7 @@
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/activity_order_history.xml" value="0.25416666666666665" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/activity_product_detail.xml" value="0.1" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/cart_viewholder.xml" value="0.25416666666666665" />
+        <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/category_viewholder.xml" value="0.25416666666666665" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/login.xml" value="0.253125" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/nav_header.xml" value="0.16" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/recommended_viewholder.xml" value="0.6" />
