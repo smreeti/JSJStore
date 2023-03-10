@@ -96,7 +96,8 @@ class ProductDetailActivity : AppCompatActivity() {
                         val database = AppDatabase.getInstance(applicationContext)
 
                         GlobalScope.launch {
-                            val existingProduct = database.clientOrderDao().getProductByName(productName)
+                            val existingProduct =
+                                database.clientOrderDao().getProductByName(productName)
 
                             if (existingProduct != null) {
                                 // Product exists, update quantity
@@ -113,13 +114,11 @@ class ProductDetailActivity : AppCompatActivity() {
                                 database.clientOrderDao().insert(clientOrder)
                             }
 
-                            // Show toast
-
-                            //Toast Not Working
-                            withContext(Dispatchers.Main) {
+                            runOnUiThread {
+                                Log.d("ProductDetailActivity", "Showing toast message")
                                 Toast.makeText(
                                     this@ProductDetailActivity, "Added to cart",
-                                    Toast.LENGTH_SHORT
+                                    Toast.LENGTH_LONG
                                 ).show()
                             }
                         }

@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.jsjstore.CartActivity
-import com.android.jsjstore.ProductDetailActivity
 import com.android.jsjstore.R
 import com.android.jsjstore.helper.AppDatabase
 import com.android.jsjstore.model.ClientOrder

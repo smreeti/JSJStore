@@ -61,7 +61,7 @@ class CheckoutActivity : AppCompatActivity() {
                     }
 
                 Toast.makeText(
-                    applicationContext, "Order places successfully", Toast.LENGTH_SHORT
+                    applicationContext, "Order placed successfully", Toast.LENGTH_SHORT
                 ).show()
 
                 val intent = Intent(applicationContext, HomeActivity::class.java)
