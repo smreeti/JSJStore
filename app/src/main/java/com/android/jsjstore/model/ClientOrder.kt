@@ -8,7 +8,7 @@ data class ClientOrder(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val productName: String,
-    val quantity: Int,
+    var quantity: Int,
     val price: Double,
     val productImage: String
 )

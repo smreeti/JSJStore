@@ -22,10 +22,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class ProductDetailActivity : AppCompatActivity() {
     private var numberOrder = 1
@@ -43,8 +40,6 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun loadProductById(productId: String) {
-
-        Log.e("loadProduct:onCancelled", productId.toString())
         val productRef = FirebaseDatabase.getInstance().getReference("products")
             .orderByChild("productId")
             .equalTo(productId.toDouble())
@@ -70,7 +65,7 @@ class ProductDetailActivity : AppCompatActivity() {
                             .toDouble() / 100).toString()
 
                     txtTitle.text = product.title.toString()
-                    txtDetailPrice.text = "$" + product.price?.toString()
+                    txtDetailPrice.text = "Unit Price: $" + product.price?.toString()
                     txtDescription.text = product?.description
                     txtRanking.text = product.rank.toString()
 
@@ -97,18 +92,33 @@ class ProductDetailActivity : AppCompatActivity() {
 
                     addToCartBtn.setOnClickListener {
                         product?.numberInCart = numberOrder.toString()
-                        val clientOrder = ClientOrder(
-                            productName = product?.title.toString(),
-                            quantity = numberOrder,
-                            price = product?.price?.toDouble()!!,
-                            productImage = product?.picture?.toString()!!
-                        )
+                        val productName = product?.title.toString()
                         val database = AppDatabase.getInstance(applicationContext)
+
                         GlobalScope.launch {
-                            database.clientOrderDao().insert(clientOrder)
+                            val existingProduct = database.clientOrderDao().getProductByName(productName)
+
+                            if (existingProduct != null) {
+                                // Product exists, update quantity
+                                existingProduct.quantity = existingProduct.quantity + numberOrder
+                                database.clientOrderDao().update(existingProduct)
+                            } else {
+                                // Product does not exist, insert new product
+                                val clientOrder = ClientOrder(
+                                    productName = product?.title.toString(),
+                                    quantity = numberOrder,
+                                    price = product?.price?.toDouble()!!,
+                                    productImage = product?.picture?.toString()!!
+                                )
+                                database.clientOrderDao().insert(clientOrder)
+                            }
+
+                            // Show toast
+
+                            //Toast Not Working
                             withContext(Dispatchers.Main) {
                                 Toast.makeText(
-                                    applicationContext, "Added to cart",
+                                    this@ProductDetailActivity, "Added to cart",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }

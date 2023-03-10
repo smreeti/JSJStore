@@ -83,7 +83,7 @@ class CartActivity : AppCompatActivity() {
             txtEmptyCard.visibility = View.GONE
             scrollView.visibility = View.VISIBLE
 
-            val totalFee = orders.sumOf { it.price }
+            val totalFee = orders.sumOf { it.price *  it.quantity }
             val percentageTax = 0.02 // change this for tax price
             val delivery = 10.00 // change this for delivery prices
             tax = Math.round(totalFee * percentageTax * 100.0) / 100.0
