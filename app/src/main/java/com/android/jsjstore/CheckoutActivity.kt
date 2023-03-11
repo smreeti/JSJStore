@@ -1,6 +1,7 @@
 package com.android.jsjstore
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -23,6 +24,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class CheckoutActivity : AppCompatActivity() {
     lateinit var binding: ActivityCheckoutBinding
@@ -67,6 +69,13 @@ class CheckoutActivity : AppCompatActivity() {
                 val intent = Intent(applicationContext, HomeActivity::class.java)
                 startActivity(intent);
             }
+        }
+
+        /**
+         * delete room database data using Database Async way
+         */
+        AsyncTask.execute {
+            clientOrderDao.deleteAll()
         }
     }
 

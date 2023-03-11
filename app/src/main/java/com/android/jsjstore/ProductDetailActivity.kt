@@ -35,8 +35,8 @@ class ProductDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         navigationMenuBehaviour(binding)
 
-        var ProductId = intent.getSerializableExtra("ProductId") as String
-        loadProductById(ProductId)
+        val productId = intent.getSerializableExtra("ProductId") as String
+        loadProductById(productId)
     }
 
     private fun loadProductById(productId: String) {
@@ -121,6 +121,7 @@ class ProductDetailActivity : AppCompatActivity() {
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
+                            startActivity(Intent(applicationContext, CartActivity::class.java))
                         }
                     }
                 } else {

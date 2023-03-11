@@ -1,6 +1,5 @@
 package com.android.jsjstore.interfaces
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.android.jsjstore.model.ClientOrder
 

@@ -42,8 +42,8 @@ class OrderHistoryAdapter(private val orders: MutableList<OrderInfo>) :
         holder.txtProductOrderTitle.text = order.productName
         holder.txtOrderQuantity.text = "Quantity: " + order.quantity.toString()
         holder.txtOrderUnitPrice.text = "Unit Price: $" + order.price.toString()
-        holder.txtOrderHistoryTotal.text = "Total: $" + (order.price * order.quantity).toString()
-
+        holder.txtOrderHistoryTotal.text =
+            "Total: $" + String.format("%.2f", order.price * order.quantity)
     }
 
     override fun getItemCount(): Int {
