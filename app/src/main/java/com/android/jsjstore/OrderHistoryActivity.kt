@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.widget.ScrollView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,9 +15,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.jsjstore.adapter.OrderHistoryAdapter
 import com.android.jsjstore.databinding.ActivityOrderHistoryBinding
 import com.android.jsjstore.model.OrderInfo
-import com.android.jsjstore.utils.CommonUtility
 import com.android.jsjstore.utils.CommonUtility.Companion.getLoggedInUser
-import com.google.firebase.database.*
+import com.android.jsjstore.utils.CommonUtility.Companion.setNavHeader
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class OrderHistoryActivity : AppCompatActivity() {
     lateinit var binding: ActivityOrderHistoryBinding
@@ -33,7 +40,6 @@ class OrderHistoryActivity : AppCompatActivity() {
 
     private fun loadOrderHistory() {
         val loggedInUser = getLoggedInUser(applicationContext)
-        //val loggedInUser = "mool,smreeti@gmail,com" -- delete me later
 
         if (loggedInUser != "") {
             val databaseReference = FirebaseDatabase.getInstance().reference
@@ -59,18 +65,30 @@ class OrderHistoryActivity : AppCompatActivity() {
                     rView = findViewById(R.id.orderHistoryRecyclerView)
                     rView?.layoutManager = LinearLayoutManager(this@OrderHistoryActivity)
                     rView?.adapter = orderHistoryAdapter
+
+                    if (orderInfoList.isEmpty()) {
+                        handleOrderHistoryMessage("No order(s) yet!")
+                    }
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
                     Log.e(TAG, "Error fetching orders: ${databaseError.message}")
                 }
             })
-
+        } else {
+            handleOrderHistoryMessage("Please login to view your orders!")
         }
     }
 
+    private fun handleOrderHistoryMessage(message: String) {
+        val txtOrderHistoryMessage: TextView = findViewById(R.id.txtOrderHistoryMessage)
+        val orderHistoryScrollView: ScrollView =
+            findViewById(R.id.orderHistoryScrollView)
 
-
+        orderHistoryScrollView.visibility = View.GONE
+        txtOrderHistoryMessage.visibility = View.VISIBLE
+        txtOrderHistoryMessage.text = message
+    }
 
     private fun navigationMenuBehaviour(binding: ActivityOrderHistoryBinding) {
         binding.apply {
@@ -102,7 +120,7 @@ class OrderHistoryActivity : AppCompatActivity() {
                         )
                     }
                     R.id.loginOrLogoutPage -> {
-                        val loggedInUser = CommonUtility.getLoggedInUser(applicationContext)
+                        val loggedInUser = getLoggedInUser(applicationContext)
 
                         if (loggedInUser == "") {
                             val intent =
@@ -122,6 +140,10 @@ class OrderHistoryActivity : AppCompatActivity() {
                 true
             }
         }
+
+        // Get a reference to the NavigationView
+        val navigationView = findViewById<NavigationView>(R.id.navView)
+        setNavHeader(applicationContext, navigationView)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.jsjstore.R
@@ -35,12 +36,14 @@ class OrderHistoryAdapter(private val orders: MutableList<OrderInfo>) :
 
         val storeRef: StorageReference =
             FirebaseStorage.getInstance().getReferenceFromUrl(order.productImage)
-        Glide.with(holder.orderHistoryImage.context).load(storeRef).into(holder.orderHistoryImage)
+        Glide.with(holder.orderHistoryImage.context).load(storeRef)
+            .into(holder.orderHistoryImage)
 
         holder.txtProductOrderTitle.text = order.productName
-        holder.txtOrderQuantity.text = order.quantity.toString()
-        holder.txtOrderUnitPrice.text = order.price.toString()
-        holder.txtOrderHistoryTotal.text = (order.price * order.quantity).toString()
+        holder.txtOrderQuantity.text = "Quantity: " + order.quantity.toString()
+        holder.txtOrderUnitPrice.text = "Unit Price: $" + order.price.toString()
+        holder.txtOrderHistoryTotal.text = "Total: $" + (order.price * order.quantity).toString()
+
     }
 
     override fun getItemCount(): Int {
