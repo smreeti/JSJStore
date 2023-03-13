@@ -13,9 +13,10 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="60dp"
+        android:id="@+id/LoginImage"
         android:layout_height="60dp"
-        android:src="@drawable/profile2"
-        tools:src="@drawable/profile2" />
+        android:src="@drawable/account_lock"
+        tools:src="@drawable/account_lock" />
 
     <TextView
         android:id="@+id/tvDisplayName"

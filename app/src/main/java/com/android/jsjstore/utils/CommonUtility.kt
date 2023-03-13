@@ -2,8 +2,10 @@ package com.android.jsjstore.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.android.jsjstore.R
 import com.google.android.material.navigation.NavigationView
 
@@ -41,10 +43,16 @@ class CommonUtility : AppCompatActivity() {
             if (loggedInUser != "") {
                 // Find the TextView within the header view
                 val tvDisplayName = headerView.findViewById<TextView>(R.id.tvDisplayName)
+                val loginImage = headerView.findViewById<ImageView>(R.id.LoginImage)
                 val tvEmail = headerView.findViewById<TextView>(R.id.tvEmail)
 
                 tvDisplayName.text = loggedInDisplayName
                 tvEmail.text = loggedInUser
+
+                // Set image for loginImage TextView
+                val drawable = ContextCompat.getDrawable(applicationContext, R.drawable.account_unlock)
+                drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+                loginImage.setImageDrawable(drawable)
 
                 //if the user is already logged in, then change the title as 'Log out' else vice versa
                 val menu = navigationView.menu
