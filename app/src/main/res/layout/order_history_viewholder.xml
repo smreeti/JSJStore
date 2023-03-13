@@ -40,9 +40,10 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        android:textColor="#373b54"
-        android:textSize="15dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
         android:textStyle="bold"
+        app:fontFamily="@font/baloo_tamma"
         app:layout_constraintStart_toEndOf="@+id/orderHistoryImage"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="Quantity: 12"
-        android:textColor="#377b54"
+        android:textColor="#b20000"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

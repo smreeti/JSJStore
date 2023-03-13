@@ -34,32 +34,33 @@ android:background="@drawable/card_background">
     app:layout_constraintTop_toTopOf="parent"
     app:srcCompat="@drawable/basketball_cat" />
 
-<TextView
-    android:id="@+id/txtProductOrderTitle"
-    android:layout_width="161dp"
-    android:layout_height="21dp"
-    android:layout_marginStart="12dp"
-    android:layout_marginTop="16dp"
-    android:text="TextView"
-    android:textColor="#373b54"
-    android:textSize="15dp"
-    android:textStyle="bold"
-    app:layout_constraintStart_toEndOf="@+id/orderHistoryImage"
-    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/txtProductOrderTitle"
+        android:layout_width="168dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:fontFamily="@font/baloo_tamma"
+        app:layout_constraintStart_toEndOf="@+id/orderHistoryImage"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<TextView
-    android:id="@+id/txtOrderQuantity"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="12dp"
-    android:text="Quantity: 12"
-    android:textColor="#377b54"
-    android:textSize="12sp"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/orderHistoryImage"
-    app:layout_constraintTop_toBottomOf="@+id/txtProductOrderTitle"
-    app:layout_constraintVertical_bias="0.173" />
+    <TextView
+        android:id="@+id/txtOrderQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Quantity: 12"
+        android:textColor="#b20000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/orderHistoryImage"
+        app:layout_constraintTop_toBottomOf="@+id/txtProductOrderTitle"
+        app:layout_constraintVertical_bias="0.173" />
 
 <TextView
     android:id="@+id/txtOrderUnitPrice"

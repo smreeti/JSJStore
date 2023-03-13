@@ -36,7 +36,7 @@
                 android:elevation="3dp"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="Add to Card"
+                android:text="Add to Cart"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
                 android:textStyle="bold"

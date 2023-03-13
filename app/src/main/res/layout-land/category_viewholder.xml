@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="TextView"
-        android:textColor="#6e6e70"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/categoryImage"
         app:layout_constraintStart_toStartOf="@+id/categoryImage"
