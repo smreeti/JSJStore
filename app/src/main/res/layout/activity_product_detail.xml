@@ -51,9 +51,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
                         android:text="Product Title"
                         android:textColor="#000000"
                         android:textSize="24sp"
+                        app:fontFamily="@font/baloo_tamma"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -153,9 +156,10 @@
                             android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:text="$0.00"
-                            android:textColor="#373b54"
+                            android:textColor="#000000"
                             android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            app:fontFamily="@font/roboto" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -193,8 +197,9 @@
                     android:layout_margin="16dp"
                     android:layout_marginStart="30dp"
                     android:paddingStart="5dp"
-                    android:textColor="@color/purple_700"
-                    android:textSize="20sp" />
+                    android:textColor="#b20000"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/baloo_tamma" />
 
                 <TextView
                     android:id="@+id/txtProductDetailDescription"
@@ -203,8 +208,9 @@
                     android:layout_margin="16dp"
                     android:layout_marginStart="20dp"
                     android:text="Description"
-                    android:textColor="#686868"
-                    android:textSize="20sp" />
+                    android:textColor="#0a0a0a"
+                    android:textSize="20sp"
+                    app:fontFamily="@font/roboto" />
             </LinearLayout>
 
             <LinearLayout

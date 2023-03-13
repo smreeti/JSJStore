@@ -3,12 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout-land/activity_home.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout-land/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout-land/activity_product_detail.xml" value="0.2421875" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout-land/order_history_viewholder.xml" value="0.2967372134038801" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout/activity_cart.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout/activity_checkout.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout/activity_home.xml" value="0.31746031746031744" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout/activity_login.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout/activity_main.xml" value="0.2823529411764706" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout/activity_order_history.xml" value="0.17046605876393112" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout/activity_product_detail.xml" value="0.29894179894179895" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout/nav_header.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout/order_history_viewholder.xml" value="0.17046605876393112" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/layout/text_selector.xml" value="0.17046605876393112" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/menu/nav_menu.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.337" />
+        <entry key="..\:/Users/Jayr Sullano/AndroidStudioProjects/JSJStore2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1785" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/drawable/checkout.xml" value="0.1615" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/drawable/checkout_background.xml" value="0.1615" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/drawable/grey_bar.xml" value="0.1" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout-land/activity_checkout.xml" value="0.1" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout-land/activity_home.xml" value="0.2515625" />
-        <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout-land/cart_viewholder.xml" value="0.2734375" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout-land/recommended_viewholder.xml" value="0.25677083333333334" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/activity_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/activity_checkout.xml" value="0.21770833333333334" />
@@ -18,10 +34,8 @@
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/activity_order_history.xml" value="0.25416666666666665" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/activity_product_detail.xml" value="0.1" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/cart_viewholder.xml" value="0.25416666666666665" />
-        <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/category_viewholder.xml" value="0.25416666666666665" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/login.xml" value="0.253125" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/nav_header.xml" value="0.16" />
-        <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/order_history_viewholder.xml" value="0.2" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/layout/recommended_viewholder.xml" value="0.6" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/menu/nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/level 3/Mobile Application Development/JSJ Store/app/src/main/res/mipmap-anydpi-v26/checkout_round.xml" value="0.2595" />

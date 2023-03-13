@@ -44,12 +44,12 @@ class MainActivity : AppCompatActivity() {
         dbRef = FirebaseDatabase.getInstance().getReference("categories")
 
         val categories: List<Category> = listOf(
-            Category("Casual", "gs://jsjstore-4e7ce.appspot.com/7170MTn1XUL._AC_UL1500_-removebg-preview.png"),
-            Category("Running", "gs://jsjstore-4e7ce.appspot.com/alphafly-2-road-racing-shoes-1wG4D7-removebg-preview.png"),
-            Category("Walking", "gs://jsjstore-4e7ce.appspot.com/ezgif-1-f91531660d-removebg-preview.png"),
-            Category("Basketball", "gs://jsjstore-4e7ce.appspot.com/running_cat.png"),
-            Category("Lifestyle", "gs://jsjstore-4e7ce.appspot.com/air-max-90-se-shoes-J35Nc1.jpeg"),
-            Category("Football", "gs://jsjstore-4e7ce.appspot.com/running_cat.png")
+            Category("Casual", "gs://jsjstore-4e7ce.appspot.com/casual.png"),
+            Category("Running", "gs://jsjstore-4e7ce.appspot.com/running.png"),
+            Category("Walking", "gs://jsjstore-4e7ce.appspot.com/walking.png"),
+            Category("Basketball", "gs://jsjstore-4e7ce.appspot.com/basketball.png"),
+            Category("Lifestyle", "gs://jsjstore-4e7ce.appspot.com/lifestyle.png"),
+            Category("Football", "gs://jsjstore-4e7ce.appspot.com/football.png")
         )
 
         for (category in categories) {
@@ -66,71 +66,85 @@ class MainActivity : AppCompatActivity() {
         val products: List<Product> = listOf(
             Product(
                 productId = 1,
-                "Nike Air Max",
-                "gs://jsjstore-4e7ce.appspot.com/running_cat.png",
-                "helps keeps your legs fresh late into the fourth quarter for better individual performances and team wins. Sneakers such as the Nike Air Zoom G.T. Run stacks a React footbed on top of a React midsole and Zoom Air in the forefoot to provide shock absorption and a responsive ride.",
-                130.99,
-                5,
+                "Lacoste Aceshot",
+                "gs://jsjstore-4e7ce.appspot.com/7170MTn1XUL._AC_UL1500_-removebg-preview.png",
+                "Rubber sole.\n" +
+                        "Men's Aceshot Textile Sneakers.\n" +
+                        "Textile, synthetic and leather uppers.\n" +
+                        "EVA, rubber and synthetic outsole.",
+                196.89,
+                100,
                 "Nike",
                 "nike_air_max"
             ),
             Product(
                 productId = 2,
-                "Nike Jordan",
-                "gs://jsjstore-4e7ce.appspot.com/running_cat.png",
-                "The Jordan' Why Not?' line proves that speed is the most important factor on the court. With two stacked Zoom Air units in the forefoot for responsive cushioning, they help you harness more of your own speed to change the game.",
-                179.99,
-                4,
+                "PUMA Carina",
+                "gs://jsjstore-4e7ce.appspot.com/puma.png",
+                "Rubber sole.\n" +
+                        "Platform.\n" +
+                        "Fashion Silhouette.",
+                184.73,
+                84,
                 "Food",
                 "nike_jordan"
             ),
             Product(
                 productId = 3,
-                "Air Jordan Nike",
-                "gs://jsjstore-4e7ce.appspot.com/running_cat.png",
-                "This shoes are all about speed and power. They have a full-length Zoom Air unit and Max Air in the heel to absorb impact and return energy. And the KnitPosite 2.0 upper provides a secure fit to help you move with confidence.",
-                528.99,
-                4,
+                "Nike Evidence",
+                "gs://jsjstore-4e7ce.appspot.com/nike.png",
+                "100% Synthetic.\n" +
+                        "Rubber sole.\n" +
+                        "Premium leather and synthetic.",
+                438.36,
+                94,
                 "Food",
                 "air_jordan"
             ),
             Product(
                 productId = 4,
-                "Basketball Nike",
-                "gs://jsjstore-4e7ce.appspot.com/running_cat.png",
-                "Nike KD basketball shoes have a durable upper that uses minimal material for a broken-in feel. Full-length Zoom Air cushioning",
-                310.99,
-                4,
+                "Timberland Tills",
+                "gs://jsjstore-4e7ce.appspot.com/timberland.png",
+                "100% Leather.\n" +
+                        "Rubber sole.\n" +
+                        "Shaft measures approximately Ankle from arch.",
+                147.29,
+                45,
                 "Food",
                 "basketball_nike"
             ),
             Product(
                 productId = 5,
-                "Nike AIR Jordan 6 Retro",
-                "gs://jsjstore-4e7ce.appspot.com/running_cat.png",
-                "Designed by the legendary Tinker Hatfield, the sixth Air Jordan edition had everything fans loved previous models for.",
-                799.99,
-                4,
+                "Converse Runstar",
+                "gs://jsjstore-4e7ce.appspot.com/converse.png",
+                "Mixed Material.\n" +
+                        "Rubber sole.\n" +
+                        "Black White.",
+                298.75,
+                69,
                 "Food",
                 "red_black_nike"
             ),
             Product(
                 productId = 6,
-                "Nike Blazers",
-                "gs://jsjstore-4e7ce.appspot.com/running_cat.png",
-                "Nike Women's W Blazer Low LX Red Stardust Sneakers, Rubber sole, Leather upper for durability and premium comfort, Autoclave construction fuses the outsole to the midsole for a streamlined look, Rubber outsole in a herringbone pattern for traction and durability.",
-                499.99,
-                4,
+                "Vans Hi-Rusty",
+                "gs://jsjstore-4e7ce.appspot.com/vanz.png",
+                "Features removable felt liners, waterproof rubber lowers.\n" +
+                        "Waterproof seam-sealed construction to keep your feet warm and dry.\n" +
+                        "Imported.",
+                279.45,
+                94,
                 "Food",
                 "nike_blazer"
             ),
             Product(
                 productId = 7,
-                "Nike Classic",
-                "gs://jsjstore-4e7ce.appspot.com/running_cat.png",
-                "The Nike Classic Cortez Leather is the original Nike running shoe perfected by an innovative, ultra-soft cushioning system. The shoe is made with a premium leather upper for comfort and durability and with the EVA wedge midsole for lightweight cushioning. Rubber sole provides unbeatable traction and resistance.",
-                99.99,
-                4,
+                "Tommy Twlaces",
+                "gs://jsjstore-4e7ce.appspot.com/tommy.png",
+                "Rubber sole.\n" +
+                        "Logo Jogger Sneaker.",
+                105.75,
+                400,
                 "Food",
                 "nike_classic"
             )
