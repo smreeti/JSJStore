@@ -40,7 +40,79 @@ class CheckoutActivity : AppCompatActivity() {
 
         val btnCheckout: Button = findViewById(R.id.btnCheckout)
         btnCheckout.setOnClickListener {
-            handleCheckoutActivity()
+
+            val etAddress = findViewById<EditText>(R.id.etAddress)
+            val etCreditCardNumber = findViewById<EditText>(R.id.etCreditCardNumber)
+            val etCreditCardName = findViewById<EditText>(R.id.etCreditCartName)
+            val etCreditCardExpirationDate = findViewById<EditText>(R.id.etCreditCardExpirationDate)
+            val etCvv = findViewById<EditText>(R.id.etCvv)
+            val btnCheckout = findViewById<Button>(R.id.btnCheckout)
+
+            btnCheckout.setOnClickListener {
+                val address = etAddress.text.toString().trim()
+                val creditCardNumber = etCreditCardNumber.text.toString().trim()
+                val creditCardName = etCreditCardName.text.toString().trim()
+                val expirationDate = etCreditCardExpirationDate.text.toString().trim()
+                val cvv = etCvv.text.toString().trim()
+
+                if (address.isEmpty()) {
+                    etAddress.error = "Please enter your address"
+                    etAddress.requestFocus()
+                    return@setOnClickListener
+                }
+
+                if (creditCardNumber.isEmpty()) {
+                    etCreditCardNumber.error = "Please enter your credit card number"
+                    etCreditCardNumber.requestFocus()
+                    return@setOnClickListener
+                }
+
+                // Validate credit card number
+                val regexCreditCardNumber = "^\\d{16}$"
+                if (!creditCardNumber.matches(Regex(regexCreditCardNumber))) {
+                    etCreditCardNumber.error = "Please enter a valid 16-digit credit card number"
+                    etCreditCardNumber.requestFocus()
+                    return@setOnClickListener
+                }
+
+                if (creditCardName.isEmpty()) {
+                    etCreditCardName.error = "Please enter your name on the credit card"
+                    etCreditCardName.requestFocus()
+                    return@setOnClickListener
+                }
+
+                if (expirationDate.isEmpty()) {
+                    etCreditCardExpirationDate.error = "Please enter the expiration date"
+                    etCreditCardExpirationDate.requestFocus()
+                    return@setOnClickListener
+                }
+
+                // Validate expiration date
+                val regexExpirationDate = "^(0[1-9]|1[0-2])/[0-9]{2,4}$"
+                if (!expirationDate.matches(Regex(regexExpirationDate))) {
+                    etCreditCardExpirationDate.error = "Please enter a valid expiration date (MM/YY or MM/YYYY)"
+                    etCreditCardExpirationDate.requestFocus()
+                    return@setOnClickListener
+                }
+
+                if (cvv.isEmpty()) {
+                    etCvv.error = "Please enter the CVV"
+                    etCvv.requestFocus()
+                    return@setOnClickListener
+                }
+
+                // Validate CVV
+                val regexCvv = "^\\d{3}$"
+                if (!cvv.matches(Regex(regexCvv))) {
+                    etCvv.error = "Please enter a valid 3-digit CVV"
+                    etCvv.requestFocus()
+                    return@setOnClickListener
+                }
+
+
+                handleCheckoutActivity()
+            }
+
         }
     }
 

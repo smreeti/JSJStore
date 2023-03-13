@@ -28,8 +28,8 @@
                 android:id="@+id/addToCardBtn"
                 android:layout_width="212dp"
                 android:layout_height="46dp"
-                android:layout_marginStart="480dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/button_background"
                 android:drawableStart="@drawable/cart_white"
                 android:drawablePadding="5dp"
@@ -40,8 +40,12 @@
                 android:textColor="#ffffff"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.94"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/productDetailImage"
@@ -56,8 +60,8 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
-                android:layout_width="375dp"
-                android:layout_height="360dp"
+                android:layout_width="379dp"
+                android:layout_height="297dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/white_background"
                 android:orientation="vertical"
@@ -79,6 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:paddingTop="10dp"
                         android:text="Product Title"
                         android:textColor="#000000"
                         android:textSize="24sp"
@@ -159,7 +164,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="334dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:gravity="center|bottom"
@@ -176,8 +181,8 @@
 
                         <TextView
                             android:id="@+id/txtDetailPrice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_width="190dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:paddingStart="8dp"
@@ -188,7 +193,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="30dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
@@ -203,8 +208,8 @@
 
                         <TextView
                             android:id="@+id/txtDetailRank"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_width="48dp"
+                            android:layout_height="37dp"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:paddingStart="8dp"
@@ -218,8 +223,8 @@
 
                 <TextView
                     android:id="@+id/txtTotalPrice"
-                    android:layout_width="310dp"
-                    android:layout_height="19dp"
+                    android:layout_width="340dp"
+                    android:layout_height="25dp"
                     android:layout_margin="16dp"
                     android:layout_marginStart="30dp"
                     android:paddingStart="5dp"
@@ -233,7 +238,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:text="Description"
-                    android:textColor="#686868"
+                    android:textColor="#0a0a0a"
                     android:textSize="22sp" />
 
             </LinearLayout>
