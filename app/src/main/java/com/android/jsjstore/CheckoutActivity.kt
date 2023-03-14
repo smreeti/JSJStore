@@ -183,7 +183,7 @@ class CheckoutActivity : AppCompatActivity() {
         val userId = getLoggedInUser(applicationContext)
         if (userId != "") {
             val userInfoMessage: TextView = findViewById(R.id.userInfoMessage)
-            userInfoMessage.text = "Dear ${userId}, please provide the following details: "
+            userInfoMessage?.text = "Dear ${userId}, please provide the following details: "
         }
     }
 

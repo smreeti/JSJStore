@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
     android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
     android:layout_marginEnd="16dp"
-    android:orientation="vertical"
     android:background="@color/white"
-    >
+    android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="60dp"
         android:id="@+id/LoginImage"
+        android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/account_lock"
         tools:src="@drawable/account_lock" />
@@ -30,6 +29,12 @@
         app:fontFamily="@font/baloo_tamma" />
 
     <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp" />
+
+    <TextView
         android:id="@+id/tvDisplayName2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,17 +45,10 @@
         android:textStyle="bold"
         app:fontFamily="@font/abeezee" />
 
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16dp" />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/black"
-        />
+        android:layout_marginTop="20dp"
+        android:background="@color/black" />
 
 </LinearLayout>

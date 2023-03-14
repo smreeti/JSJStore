@@ -45,9 +45,11 @@ class CommonUtility : AppCompatActivity() {
                 val tvDisplayName = headerView.findViewById<TextView>(R.id.tvDisplayName)
                 val loginImage = headerView.findViewById<ImageView>(R.id.LoginImage)
                 val tvEmail = headerView.findViewById<TextView>(R.id.tvEmail)
+                val tvDisplayName2= headerView.findViewById<TextView>(R.id.tvDisplayName2)
 
                 tvDisplayName.text = loggedInDisplayName
                 tvEmail.text = loggedInUser
+                tvDisplayName2.text = " "
 
                 // Set image for loginImage TextView
                 val drawable = ContextCompat.getDrawable(applicationContext, R.drawable.account_unlock)

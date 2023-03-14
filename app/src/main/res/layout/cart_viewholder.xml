@@ -12,7 +12,7 @@
 
     <TextView
         android:id="@+id/txtTotalEachItem"
-        android:layout_width="135dp"
+        android:layout_width="0dp"
         android:layout_height="19dp"
         android:layout_marginTop="40dp"
         android:text="Total: $0.00"
@@ -20,8 +20,6 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/txtFeeEachItem"
         app:layout_constraintTop_toBottomOf="@+id/btnDeleteProductCart" />
 
     <ImageView
